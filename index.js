@@ -1,7 +1,6 @@
 var express = require("express");
 var app = express();
 const Joi = require('joi');
-var request = require("request");
 var fs = require("fs");
 
 app.use(express.json());

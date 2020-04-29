@@ -1,7 +1,6 @@
 var expect = require("chai").expect;
 let chai = require('chai');
 let chaiHttp = require('chai-http');
-var server = require('../index')
 chai.use(chaiHttp);
 
 describe("Games API", function () {
@@ -9,7 +8,7 @@ describe("Games API", function () {
         it("Returns 200, ping", function (done) {
             chai.request('http://localhost:3000')
                 .get('/ping')
-                .end((err, res, body) => {
+                .end((res) => {
                     expect(res.statusCode).to.equal(200);
                     done();
                 });
@@ -22,7 +21,7 @@ describe("Games API", function () {
         it("Returns 200", function (done) {
             chai.request('http://localhost:3000')
                 .post('/api/games')
-                .end((err, res, body) => {
+                .end((res) => {
                     expect(res.statusCode).to.equal(200);
                     expect(res.body).to.contain(
                         {
@@ -50,7 +49,7 @@ describe("Games API", function () {
                         "status": "active"
                     }
                 )
-                .end((err, res, body) => {
+                .end((res) => {
                     expect(res.statusCode).to.equal(200);
                     expect(res.body).to.contain(
                         {
@@ -80,7 +79,7 @@ describe("Games API", function () {
                         "status": "active"
                     }
                 )
-                .end((err, res, body) => {
+                .end((res) => {
                     expect(res.statusCode).to.equal(200);
                     expect(res.body).to.contain(
                         {
@@ -108,7 +107,7 @@ describe("Games API", function () {
                         "status": "active"
                     }
                 )
-                .end((err, res, body) => {
+                .end((res) => {
                     expect(res.statusCode).to.equal(200);
                     expect(res.body).to.contain(
                         {
@@ -136,7 +135,7 @@ describe("Games API", function () {
                         "status": "active"
                     }
                 )
-                .end((err, res, body) => {
+                .end((res) => {
                     expect(res.statusCode).to.equal(200);
                     expect(res.body).to.contain(
                         {
