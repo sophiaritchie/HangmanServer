@@ -1,15 +1,15 @@
 var expect = require("chai").expect;
-var request = require("request");
-
+let chai = require('chai');
+let chaiHttp = require('chai-http');
+chai.use(chaiHttp);
 
 describe("Games API", function () {
     describe("GET /ping", function () {
-        var url = "http://localhost:3000/ping";
-
         it("Returns 200, ping", function (done) {
-            request(url, function (error, response, body) {
-                expect(response.statusCode).to.equal(200);
-                expect(body).to.equal('ping');
+            chai.request('http://localhost:3000')
+            .get('/ping')
+            .end((err, res) => {
+                expect(res.statusCode).to.equal(200);
                 done();
             });
         });
