@@ -22,15 +22,15 @@ const schema = {
     status: Joi.string().valid('active', 'won', 'lost')
 };
 
+function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+  }
+
 app.post('/api/games', (req, res) => {
 
-    wordArray = [];
-    // request('https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt', { raw: true }, (err, res, body) => {
-    //     if (err) { return console.log(err); }
-    //     //console.log(res);
-    // });
+    var wordArray = fs.readFileSync('words_alpha.txt').toString().split("\r\n");
 
-    var randomWord = "hello";
+    var randomWord = wordArray[getRandomInt(wordArray.length)];
     const generatedId = 1
 
     const game = {
