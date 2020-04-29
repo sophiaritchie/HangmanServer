@@ -151,5 +151,14 @@ describe("Games API", function () {
                     done();
                 });
         });
+
+        it("When invalid req body sent, return error", function (done) {
+            chai.request('http://localhost:3000')
+                .patch('/api/games')
+                .end((err, res, body) => {
+                    expect(err.statusCode).to.equal(400);
+                    done();
+                });
+        });
     });
 });

@@ -54,6 +54,17 @@ app.post('/api/games', (req, res) => {
 
 app.patch('/api/games', (req, res) => {
 
+    if(req.body.constructor === Object && Object.keys(req.body).length === 0) {
+        res.status(400).send("Must provide request body")
+        return;
+    }
+
+    const { reqError } = Joi.validate(req.body, schema);
+    if (reqError) {
+        res.status(400).send(reqError.details[0].message)
+        return;
+    }
+
     var guesses = req.body.guesses;
     var word = req.body.word;
     var lives = 3;
