@@ -4,7 +4,7 @@
     "description": "RESTful api for a game of hangman",
     "main": "index.js",
     "scripts": {
-        "test": "mocha --reporter spec",
+        "test": "mocha -timeout 5000 --reporter spec",
         "start": "node index.js"
     },
     "repository": {
@@ -18,10 +18,12 @@
     },
     "homepage": "https://github.com/sophiaritchie/HangmanServer#readme",
     "devDependencies": {
-        "express": "^4.17.1"
+        "express": "^4.17.1",
+        "joi": "^14.3.1"
     },
     "dependencies": {
         "chai": "^4.2.0",
+        "chai-http": "^4.3.0",
         "mocha": "^7.1.2",
         "request": "^2.88.2"
     }
