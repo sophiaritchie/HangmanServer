@@ -44,13 +44,61 @@ app.post('/api/games', (req, res) => {
 
     const { error } = Joi.validate(game, schema);
     if (error) {
-        res.status(400).send(error.details[0].message)
+        res.status(500).send(error.details[0].message)
         return;
     }
 
     gamesDb.push(game);
     res.send(game);
 });
+
+app.patch('/api/games', (req, res) => {
+
+    var guesses = req.body.guesses;
+    var word = req.body.word;
+    var lives = 3;
+    var status = req.body.status;
+
+    
+    console.log(req.body)
+
+    count = 0;
+    guesses.forEach(guess => {
+        if (!word.includes(guess)){
+            lives--;
+        } else {
+            count++
+        }
+    })
+
+
+    if (lives == 0) {
+        status = 'lost'
+    }
+
+    if (count == word.length){
+        status = 'won'
+    }
+
+    const game = {
+        id: req.body.id,
+        word: word,
+        wordLength: req.body.wordLength,
+        guesses: guesses,
+        lives: lives,
+        status: status
+    };
+
+    const { error } = Joi.validate(game, schema);
+    if (error) {
+        res.status(500).send(error.details[0].message)
+        return;
+    }
+
+    gamesDb.push(game);
+    res.send(game);
+});
+
 
 
 app.listen(3000);
