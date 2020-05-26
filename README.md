@@ -1,5 +1,5 @@
 # HangmanServer
-Node.js API for the game Hangman
+Node.js API for the game Hangman. Completed in 3 hours as a technical challenge.
 
 
 ## Local setup:
